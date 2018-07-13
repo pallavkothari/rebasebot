@@ -1,17 +1,19 @@
-IMG := rebasebot:latest
-REGISTRY := ops0-artifactrepo1-0-prd.data.sfdc.net
-SFCI_NAME := ${REGISTRY}/zero/${IMG}
+TAG	:= $$(git log -1 --pretty=%h)
+IMG := rebasebot:${TAG}
+IMG_LATEST := rebasebot:latest
+REGISTRY_NAME := ${REGISTRY}/${DOCKER_USER}/${IMG}
 
 build:
 	@go build
 	@docker build -t ${IMG} .
-	@docker tag ${IMG} ${SFCI_NAME}
+	@docker tag ${IMG} ${REGISTRY_NAME}
+	@docker tag ${IMG} ${IMG_LATEST}
 
 login:
 	@docker login ${REGISTRY}
 
 push:
-	@docker push ${SFCI_NAME}
+	@docker push ${REGISTRY_NAME}
 
 run:
 	@env | grep -e 'GITHUB_' -e 'PORT' -e 'SECRET' -e 'HTTP' > .env
@@ -27,3 +29,6 @@ heroku-push:
 	@heroku container:push web
 	@heroku container:release web
 
+echo:
+	@echo ${REGISTRY}
+	@echo ${REGISTRY_NAME}
