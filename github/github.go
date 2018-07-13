@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"crypto/tls"
 )
 
 const (
@@ -18,7 +19,8 @@ var (
 	username   string
 	password   string
 	signature  string
-	httpClient = &http.Client{}
+	tr = &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true},}
+	httpClient = &http.Client{Transport:tr}
 )
 
 func init() {
