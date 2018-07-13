@@ -22,7 +22,12 @@ func (r Repository) FindPR(number int) (*PullRequest, error) {
 	log.Println("github.find_pr.started")
 
 	path := fmt.Sprintf("/repos/%s/pulls/%d", r.FullName, number)
+	log.Println(path)
+
 	request := NewGitHubRequest(path)
+	log.Println(request)
+	log.Println(request.URL)
+
 	response, err := httpClient.Do(request)
 
 	defer response.Body.Close()
