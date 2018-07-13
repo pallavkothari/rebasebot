@@ -30,8 +30,7 @@ func (r Repository) FindPR(number int) (*PullRequest, error) {
 
 	response, err := httpClient.Do(request)
 
-	log.Println("skipping closing response body.. ")		// FIXME
-	//defer response.Body.Close()
+	defer response.Body.Close()
 
 	if err != nil {
 		log.Println("github.find_pr.failed error: ", err)
