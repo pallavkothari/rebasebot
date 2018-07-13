@@ -23,13 +23,13 @@ A GitHub bot that rebases your pull request branches when you ask
 ### Download
 
 ```shell
-$ go get github.com/chrisledet/rebasebot
+$ go get github.com/pallavkothari/rebasebot
 ```
 
 ### Build
 
 ```shell
-$ cd $GOPATH/src/github.com/chrisledet/rebasebot
+$ cd $GOPATH/src/github.com/pallavkothari/rebasebot
 $ go build
 ```
 

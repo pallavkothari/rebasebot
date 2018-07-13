@@ -12,8 +12,8 @@ import (
 	"time"
 	"strings"
 
-	"github.com/chrisledet/rebasebot/github"
-	"github.com/chrisledet/rebasebot/integrations"
+	"github.com/pallavkothari/rebasebot/github"
+	"github.com/pallavkothari/rebasebot/integrations"
 )
 
 func Rebase(w http.ResponseWriter, r *http.Request) {

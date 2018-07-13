@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/chrisledet/rebasebot/config"
-	_http "github.com/chrisledet/rebasebot/http"
+	"github.com/pallavkothari/rebasebot/config"
+	_http "github.com/pallavkothari/rebasebot/http"
 )
 
 const (
