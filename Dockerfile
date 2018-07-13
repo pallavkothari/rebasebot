@@ -6,7 +6,7 @@ ENV GOROOT /usr/local/go
 ENV PATH $PATH:$GOROOT/bin
 
 # Install rebasebot
-RUN go get -u github.com/chrisledet/rebasebot
+#RUN go get -u github.com/pallavkothari/rebasebot
 ADD . /go/src/github.com/pallavkothari/rebasebot
 RUN go install github.com/pallavkothari/rebasebot
 
@@ -15,4 +15,4 @@ RUN git config --global user.name "Rebase Bot"
 RUN git config --global user.email "rebase-bot@users.noreply.github.com"
 
 # Set default container command
-CMD ["$GOPATH/bin/rebasebot"]
+CMD rebasebot
