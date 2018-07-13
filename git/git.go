@@ -12,6 +12,7 @@ import (
 
 var (
 	repoParentDir string
+	githubHostname	string
 	username      string
 	password      string
 	gitName       string
@@ -43,6 +44,7 @@ func init() {
 
 	username = os.Getenv("GITHUB_USERNAME")
 	password = os.Getenv("GITHUB_PASSWORD")
+	githubHostname = os.Getenv("GITHUB_HOSTNAME")
 	gitName  = os.Getenv("GIT_USER")
 	gitEmail = os.Getenv("GIT_EMAIL")
 
@@ -51,7 +53,7 @@ func init() {
 	}
 
 	if len(gitEmail) < 1 {
-		gitEmail = fmt.Sprintf("%s@users.noreply.github.com", gitName)
+		gitEmail = fmt.Sprintf("%s@users.noreply.%s", gitName, githubHostname)
 	}
 }
 
@@ -64,7 +66,7 @@ func GetEmail() string {
 }
 
 func GenerateCloneURL(repositoryFullName string) string {
-	return fmt.Sprintf("https://%s:%s@github.com/%s.git", username, password, repositoryFullName)
+	return fmt.Sprintf("https://%s:%s@%s/%s.git", username, password, githubHostname, repositoryFullName)
 }
 
 func Exists(repositoryPath string) bool {

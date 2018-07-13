@@ -14,6 +14,7 @@ const (
 )
 
 var (
+	githubEndpoint	string
 	username   string
 	password   string
 	signature  string
@@ -21,6 +22,7 @@ var (
 )
 
 func init() {
+	githubEndpoint = os.Getenv("GITHUB_ENDPOINT")
 	username = os.Getenv("GITHUB_USERNAME")
 	password = os.Getenv("GITHUB_PASSWORD")
 	signature = os.Getenv("SECRET")
@@ -28,7 +30,7 @@ func init() {
 
 // Returns a request set up for the GitHub API
 func NewGitHubRequest(path string) *http.Request {
-	requestUrl := "https://api.github.com" + path
+	requestUrl := githubEndpoint + path
 	request, _ := http.NewRequest("GET", requestUrl, nil)
 	request.SetBasicAuth(username, password)
 	request.Header.Set("Accept", mediaType)
